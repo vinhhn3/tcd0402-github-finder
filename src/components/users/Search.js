@@ -11,6 +11,14 @@ export class Search extends Component {
     });
   };
 
+  onClear = (e) => {
+    e.preventDefault();
+    this.setState({
+      text: "",
+    });
+    this.props.clearUsers();
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.searchUsers(this.state.text);
@@ -31,6 +39,13 @@ export class Search extends Component {
             type="submit"
             className="btn btn-dark btn-block"
           ></input>
+          {this.props.usersData.length > 0 ? (
+            <button onClick={this.onClear} className="btn btn-light btn-block">
+              Clear
+            </button>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     );
