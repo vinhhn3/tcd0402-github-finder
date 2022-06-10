@@ -9,12 +9,11 @@ export class Search extends Component {
     this.setState({
       text: e.target.value,
     });
-    console.log(this.state.text);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.text);
+    this.props.searchUsers(this.state.text);
   };
   render() {
     return (
