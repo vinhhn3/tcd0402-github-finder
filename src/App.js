@@ -5,12 +5,14 @@ import "./App.css";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
 import Search from "./components/users/Search";
+import User from "./components/users/User";
 import Users from "./components/users/Users";
 import Navbar from "./layout/Navbar";
 
 class App extends Component {
   state = {
     usersData: [],
+    user: {},
   };
 
   searchUsers = async (text) => {
@@ -25,6 +27,13 @@ class App extends Component {
   clearUsers = () => {
     this.setState({
       usersData: [],
+    });
+  };
+
+  getUser = async (login) => {
+    const response = await axios.get(`https://api.github.com/users/${login}`);
+    this.setState({
+      user: response.data,
     });
   };
 
@@ -48,6 +57,17 @@ class App extends Component {
                     />
                     <Users usersData={this.state.usersData} />
                   </Fragment>
+                )}
+              />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    user={this.state.user}
+                    {...props}
+                    getUser={this.getUser}
+                  />
                 )}
               />
               <Route path="" component={NotFound} />
