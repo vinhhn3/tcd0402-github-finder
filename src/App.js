@@ -3,6 +3,7 @@ import { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import About from "./components/pages/About";
+import NotFound from "./components/pages/NotFound";
 import Search from "./components/users/Search";
 import Users from "./components/users/Users";
 import Navbar from "./layout/Navbar";
@@ -49,6 +50,7 @@ class App extends Component {
                   </Fragment>
                 )}
               />
+              <Route path="" component={NotFound} />
             </Switch>
           </div>
         </div>
