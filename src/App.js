@@ -8,24 +8,18 @@ import Navbar from "./layout/Navbar";
 class App extends Component {
   state = {
     usersData: [],
-    searchText: "",
   };
 
-  searchUsers = (text) => {
+  searchUsers = async (text) => {
+    const response = await axios.get(
+      `https://api.github.com/search/users?q=${text}`
+    );
     this.setState({
-      searchText: text,
+      usersData: response.data.items,
     });
-    console.log("This is from App ...");
-    console.log(this.state.searchText);
+    console.log(response.data.items);
   };
 
-  componentDidMount() {
-    axios.get("https://api.github.com/users").then((response) => {
-      this.setState({
-        usersData: response.data,
-      });
-    });
-  }
   render() {
     return (
       <div>
