@@ -12,11 +12,6 @@ import Navbar from "./layout/Navbar";
 
 const App = () => {
   const [user, setUser] = useState({});
-  const [usersData, setUsersData] = useState([]);
-
-  const clearUsers = () => {
-    setUsersData([]);
-  };
 
   const getUser = async (login) => {
     const response = await axios.get(`https://api.github.com/users/${login}`);
@@ -36,7 +31,7 @@ const App = () => {
                 path="/"
                 render={() => (
                   <Fragment>
-                    <Search clearUsers={clearUsers} />
+                    <Search />
                     <Users />
                   </Fragment>
                 )}
