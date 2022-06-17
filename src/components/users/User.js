@@ -34,6 +34,7 @@ const User = (props) => {
         </Link>
         <div className="card grid">
           <div className="all-center">
+            <p>Information</p>
             <img
               alt=""
               src={avatar_url}
