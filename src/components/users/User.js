@@ -1,8 +1,11 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
 const User = (props) => {
-  const { getUser, user, match } = props;
+  const githubContext = useContext(GithubContext);
+  const { getUser, user } = githubContext;
+  const { match } = props;
   const {
     name,
     login,
@@ -31,6 +34,7 @@ const User = (props) => {
         </Link>
         <div className="card grid">
           <div className="all-center">
+            <p>Information</p>
             <img
               alt=""
               src={avatar_url}
