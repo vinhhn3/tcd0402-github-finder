@@ -14,13 +14,6 @@ const App = () => {
   const [user, setUser] = useState({});
   const [usersData, setUsersData] = useState([]);
 
-  const searchUsers = async (text) => {
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}`
-    );
-    setUsersData(response.data.items);
-  };
-
   const clearUsers = () => {
     setUsersData([]);
   };
@@ -43,12 +36,8 @@ const App = () => {
                 path="/"
                 render={() => (
                   <Fragment>
-                    <Search
-                      searchUsers={searchUsers}
-                      usersData={usersData}
-                      clearUsers={clearUsers}
-                    />
-                    <Users usersData={usersData} />
+                    <Search clearUsers={clearUsers} />
+                    <Users />
                   </Fragment>
                 )}
               />
