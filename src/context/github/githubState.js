@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useReducer } from "react";
 import { CLEAR_USERS, GET_USER, SEARCH_USERS } from "../types";
+import { getGitHubUser, getGitHubUsers } from "./GithubApi";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
 
@@ -13,9 +13,7 @@ const GithubState = (props) => {
   const [state, dispatch] = useReducer(GithubReducer, initialState);
 
   const searchUsers = async (text) => {
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}`
-    );
+    const response = await getGitHubUsers(text);
     dispatch({
       type: SEARCH_USERS,
       payload: response.data.items,
@@ -29,7 +27,7 @@ const GithubState = (props) => {
   };
 
   const getUser = async (login) => {
-    const response = await axios.get(`https://api.github.com/users/${login}`);
+    const response = await getGitHubUser(login);
     dispatch({
       type: GET_USER,
       payload: response.data,
